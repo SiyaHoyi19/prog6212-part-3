@@ -1,0 +1,17 @@
+# This is a basic workflow to help you get started with Actions
+name: RaceDay CI
+on:
+push:
+pull_request:
+jobs:
+build-and-test:
+runs-on: ubuntu-latest
+steps:- name: Checkout repository
+uses: actions/checkout@v4- 
+name: Set up .NET
+uses: actions/setup-dotnet@v4
+with:
+dotnet-version: '8.0.x- name: Restore
+run: dotnet restore RaceDay.sln- name: Build
+run: dotnet build RaceDay.sln --configuration Release --no-restore- name: Test
+run: dotnet test RaceDay.Api.Tests/RaceDay.Api.Tests.csproj --configuration Release --no-build
