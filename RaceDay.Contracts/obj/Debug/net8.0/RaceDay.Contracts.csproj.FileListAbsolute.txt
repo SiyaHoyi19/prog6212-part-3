@@ -1,0 +1,12 @@
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\bin\Debug\net8.0\RaceDay.Contracts.deps.json
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\bin\Debug\net8.0\RaceDay.Contracts.dll
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\bin\Debug\net8.0\RaceDay.Contracts.pdb
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay.Contracts.AssemblyInfoInputs.cache
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay.Contracts.AssemblyInfo.cs
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay.Contracts.dll
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\refint\RaceDay.Contracts.dll
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay.Contracts.pdb
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\ref\RaceDay.Contracts.dll
+C:\Users\Siyahluma Hoyi\OneDrive\Desktop\PROG6212 NOTES\RaceDay.Api\RaceDay.Contracts\obj\Debug\net8.0\RaceDay..C9A4A03B.Up2Date
