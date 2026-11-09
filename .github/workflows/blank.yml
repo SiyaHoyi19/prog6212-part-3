@@ -1,4 +1,4 @@
-name: RaceDay.Mvc
+name: RaceDay..sln
 
 on:
   push:
@@ -22,10 +22,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore RaceDay.Mvc
+        run: dotnet restore RaceDay..sln
 
       - name: Build
         run: dotnet build RaceDay.sln --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test RaceDay.Mvc --configuration Release --no-build
+        run: dotnet test RaceDay..sln --configuration Release --no-build
