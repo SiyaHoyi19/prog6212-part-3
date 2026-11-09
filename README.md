@@ -164,6 +164,6 @@ Add a genuine screenshot of a green Actions run to `docs/ci-green-build.png` if 
 
 ## Video Presentation
 
-**Unlisted YouTube video:** _Add the actual unlisted video link here before submission._
+**Unlisted YouTube video:** _https://youtu.be/8QI9WuN8_fI?si=UaoqYKZUBkPjhYlT_
 
 The video should demonstrate the running MVC application and API, explain the project structure and role-based workflows, show banner upload and Azure Blob Storage, and demonstrate the Docker image and running container. Also show the verified GitHub Actions result. Do not show passwords, Azure connection strings, or other secrets.
