@@ -1,0 +1,60 @@
+@model RaceDay.Mvc.Models.ParticipantEventDetailsViewModel
+@{
+    ViewData["Title"] = Model.Event.Name;
+}
+
+<p class="eyebrow">RACE DAY EVENT</p>
+<p><a asp-action="Index">&larr; Back to upcoming events</a></p>
+
+@if (ViewBag.Error is string error)
+{
+    <div class="alert alert-danger" role="alert">@error</div>
+}
+@if (ViewBag.Success is string success)
+{
+    <div class="alert alert-success" role="status">@success</div>
+}
+
+<article class="form-card">
+    @if (!string.IsNullOrWhiteSpace(Model.Event.BannerImageUrl))
+    {
+        <img src="@Url.Action("EventBanner", "Media", new { id = Model.Event.EventId })"
+             alt="@Model.Event.Name banner"
+             class="img-fluid rounded mb-4"
+             style="max-height: 420px; width: 100%; object-fit: cover;" />
+    }
+
+    <span class="event-type">@Model.Event.Type · @Model.Event.Distance km</span>
+    <h1 class="mt-2">@Model.Event.Name</h1>
+    <p class="muted">@Model.Event.Date.ToString("dddd, dd MMMM yyyy") · @Model.Event.Location</p>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Event.Description))
+    {
+        <p>@Model.Event.Description</p>
+    }
+
+    <hr />
+    <h2>Choose a category</h2>
+    @if (Model.Categories.Count == 0)
+    {
+        <div class="empty-card">The organiser has not added any categories for this event yet.</div>
+    }
+    else
+    {
+        <form asp-action="EnterEvent" method="post" class="form-card mt-3">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="eventId" value="@Model.Event.EventId" />
+            <div class="mb-3">
+                <label class="form-label" for="categoryId">Event category</label>
+                <select class="form-select" id="categoryId" name="categoryId" required>
+                    <option value="">Select a category</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.CategoryId">@category.Name — @category.Distance (minimum age @category.MinAge)</option>
+                    }
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Enter this event</button>
+        </form>
+    }
+</article>

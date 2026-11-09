@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "RaceDay.Mvc/1.0.0": {
+        "dependencies": {
+          "RaceDay.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "RaceDay.Mvc.dll": {}
+        }
+      },
+      "RaceDay.Contracts/1.0.0": {
+        "runtime": {
+          "RaceDay.Contracts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RaceDay.Mvc/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RaceDay.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

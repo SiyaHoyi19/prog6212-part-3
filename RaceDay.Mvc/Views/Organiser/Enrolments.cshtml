@@ -1,0 +1,10 @@
+@model RaceDay.Mvc.Models.OrganiserEnrolmentsViewModel
+@{ ViewData["Title"] = "Event enrolments"; }
+<p><a asp-action="Events">← Back to events</a></p><p class="eyebrow">PARTICIPANTS</p><h1>@Model.Event.Name</h1><p class="muted">Enrolments show the participant ID, selected category, and current status.</p>
+@if (TempData["Error"] is string error) { <div class="alert alert-danger">@error</div> }
+@if (TempData["Success"] is string success) { <div class="alert alert-success">@success</div> }
+@if (Model.Enrolments.Count == 0) { <div class="empty-card">No participants have enrolled yet.</div> }
+else { <div class="table-responsive"><table class="table align-middle bg-white"><thead><tr><th>Participant</th><th>Category</th><th>Enrolled</th><th>Status</th><th>Update</th></tr></thead><tbody>
+@foreach (var row in Model.Enrolments) { var statusClass = row.Enrolment.Status.ToLowerInvariant() switch { "confirmed" => "status-confirmed", "cancelled" => "status-cancelled", _ => "status-pending" }; <tr><td>@row.Enrolment.ParticipantName</td><td>@row.CategoryName</td><td>@row.Enrolment.Date.ToString("dd MMM yyyy")</td><td><span class="status-chip @statusClass">@row.Enrolment.Status</span></td><td><form asp-action="UpdateEnrolmentStatus" method="post" class="d-flex gap-2"><input type="hidden" name="eventId" value="@Model.Event.EventId" /><input type="hidden" name="id" value="@row.Enrolment.EnrolmentId" /><select name="status" class="form-select form-select-sm"><option selected="@(row.Enrolment.Status == "Pending")">Pending</option><option selected="@(row.Enrolment.Status == "Confirmed")">Confirmed</option><option selected="@(row.Enrolment.Status == "Cancelled")">Cancelled</option></select><button class="btn btn-sm btn-primary">Save</button></form></td></tr> }
+</tbody></table></div> }
+

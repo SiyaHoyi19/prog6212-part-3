@@ -1,0 +1,3 @@
+@model RaceDay.Mvc.Models.ErrorViewModel
+@{ ViewData["Title"] = "Something went wrong"; }
+<div class="empty-card"><h1>Something went wrong</h1><p>Please try again later.</p>@if (Model.ShowRequestId) { <small>Reference: @Model.RequestId</small> }</div>

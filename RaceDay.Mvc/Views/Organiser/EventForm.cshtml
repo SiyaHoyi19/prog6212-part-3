@@ -1,0 +1,20 @@
+@model RaceDay.Mvc.Models.EventEditViewModel
+@{ ViewData["Title"] = Model.EventId.HasValue ? "Edit event" : "Create event"; }
+<div class="form-card">
+ <p class="eyebrow">ORGANISER EVENT</p><h1>@ViewData["Title"]</h1>
+ <form asp-action="@(Model.EventId.HasValue ? "EditEvent" : "CreateEvent")" asp-route-id="@Model.EventId" method="post" enctype="multipart/form-data">
+  <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+  <label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger"></span>
+  <label asp-for="Description" class="form-label mt-3"></label><textarea asp-for="Description" class="form-control" rows="3"></textarea><span asp-validation-for="Description" class="text-danger"></span>
+  <label asp-for="Date" class="form-label mt-3"></label><input asp-for="Date" type="date" class="form-control" /><span asp-validation-for="Date" class="text-danger"></span>
+  <label asp-for="Location" class="form-label mt-3"></label><input asp-for="Location" class="form-control" /><span asp-validation-for="Location" class="text-danger"></span>
+  <label asp-for="Distance" class="form-label mt-3">Distance (km)</label><input asp-for="Distance" type="number" min="0.1" step="0.1" class="form-control" /><span asp-validation-for="Distance" class="text-danger"></span>
+  <label asp-for="Type" class="form-label mt-3"></label><select asp-for="Type" class="form-select"><option>Run</option><option>Walk</option><option>Cycle</option></select>
+  @if (!string.IsNullOrWhiteSpace(Model.BannerImageUrl) && Model.EventId.HasValue) { <div class="mt-3"><label class="form-label">Current banner</label><img src="@Url.Action("EventBanner", "Media", new { id = Model.EventId })" alt="Current banner for @Model.Name" class="img-fluid rounded d-block" style="max-height: 220px" /></div> }
+  <label asp-for="Banner" class="form-label mt-3">Event banner (JPG, PNG, WebP; up to 5 MB)</label><input asp-for="Banner" type="file" class="form-control" accept="image/jpeg,image/png,image/webp" /><span asp-validation-for="Banner" class="text-danger"></span>
+  <div class="mt-4 d-flex gap-2"><button class="btn btn-primary" type="submit">Save event</button><a asp-action="Events" class="btn btn-outline-secondary">Cancel</a></div>
+ </form>
+</div>
+enctype="multipart/form-data"
+<input type="file" name="Banner" accept="image/*" />
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

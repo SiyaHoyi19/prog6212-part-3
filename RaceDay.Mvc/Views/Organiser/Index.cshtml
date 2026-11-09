@@ -1,0 +1,19 @@
+@model RaceDay.Mvc.Models.OrganiserDashboardViewModel
+@{ ViewData["Title"] = "Organiser dashboard"; }
+<section class="hero">
+  <div><p class="eyebrow">ORGANISER DASHBOARD</p><h1>Welcome, @Context.Session.GetString("FullName")</h1><p>Your events and registration activity at a glance.</p></div>
+  <a asp-action="CreateEvent" class="btn btn-warning fw-semibold">Create event</a>
+</section>
+@if (TempData["Error"] is string error) { <div class="alert alert-danger mt-3">@error</div> }
+<div class="row g-3 mt-2">
+  <div class="col-md-4"><div class="stat-card"><span>Events you manage</span><strong>@Model.Events.Count</strong></div></div>
+  <div class="col-md-4"><div class="stat-card"><span>Total enrolments</span><strong>@Model.TotalEnrolments</strong></div></div>
+  <div class="col-md-4"><div class="stat-card"><span>Upcoming events</span><strong>@Model.UpcomingEventCount</strong></div></div>
+</div>
+<section class="mt-5">
+ <div class="section-heading"><div><p class="eyebrow">YOUR PROGRAMME</p><h2>Events you organise</h2></div><a asp-action="Events" class="btn btn-outline-primary">Manage events</a></div>
+ @if (Model.Events.Count == 0) { <div class="empty-card">You have not created an event yet. Create your first one to get started.</div> }
+ else { <div class="table-responsive"><table class="table align-middle bg-white rounded overflow-hidden"><thead><tr><th>Event</th><th>Date</th><th>Location</th><th>Enrolments</th><th>Manage</th></tr></thead><tbody>
+ @foreach (var summary in Model.Events.OrderBy(x => x.Event.Date)) { <tr><td><strong>@summary.Event.Name</strong><div class="text-muted small">@summary.Event.Type · @summary.Event.Distance km</div></td><td>@summary.Event.Date.ToString("dd MMM yyyy")</td><td>@summary.Event.Location</td><td><span class="count-pill">@summary.EnrolmentCount</span></td><td class="text-nowrap"><a asp-action="Categories" asp-route-eventId="@summary.Event.EventId">Categories</a> · <a asp-action="Enrolments" asp-route-eventId="@summary.Event.EventId">Enrolments</a> · <a asp-action="Results" asp-route-eventId="@summary.Event.EventId">Results</a></td></tr> }
+ </tbody></table></div> }
+</section>

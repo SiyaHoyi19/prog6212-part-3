@@ -1,0 +1,21 @@
+@model RaceDay.Mvc.Models.ParticipantEventsViewModel
+@{ ViewData["Title"] = "Find events"; }
+<section class="hero">
+    <div><p class="eyebrow">FIND YOUR NEXT START LINE</p><h1>Welcome, @Context.Session.GetString("FullName")</h1><p>Explore upcoming RaceDay events and choose your next challenge.</p></div>
+</section>
+@if (ViewBag.Error is string error) { <div class="alert alert-danger mt-3">@error</div> }
+<form method="get" asp-action="Index" class="form-card mt-4">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-3"><label class="form-label" for="type">Event type</label><select class="form-select" id="type" name="type"><option value="">All types</option><option selected="@(Model.Type == "Run")">Run</option><option selected="@(Model.Type == "Walk")">Walk</option><option selected="@(Model.Type == "Cycle")">Cycle</option></select></div>
+        <div class="col-md-3"><label class="form-label" for="location">Location</label><input class="form-control" id="location" name="location" value="@Model.Location" placeholder="Gqeberha" /></div>
+        <div class="col-md-4"><label class="form-label" for="search">Name or description</label><input class="form-control" id="search" name="search" value="@Model.Search" placeholder="Search events" /></div>
+        <div class="col-md-2 d-flex gap-2"><button class="btn btn-primary" type="submit">Filter</button><a asp-action="Index" class="btn btn-outline-secondary">Clear</a></div>
+    </div>
+</form>
+<section class="mt-4">
+    <div class="section-heading"><div><p class="eyebrow">UPCOMING</p><h2>Available events</h2></div><span class="count-pill">@Model.Events.Count events</span></div>
+    @if (Model.Events.Count == 0) { <div class="empty-card">No upcoming events match these filters.</div> }
+    else { <div class="row g-3">
+        @foreach (var ev in Model.Events) { <div class="col-md-6 col-xl-4"><article class="event-card"><span class="event-type">@ev.Type · @ev.Distance km</span><h3>@ev.Name</h3><p>@ev.Date.ToString("dd MMM yyyy") · @ev.Location</p><p>@ev.Description</p><a asp-action="Details" asp-route-id="@ev.EventId" class="btn btn-primary btn-sm">View event and categories</a></article></div> }
+    </div> }
+</section>

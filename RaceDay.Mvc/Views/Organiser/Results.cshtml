@@ -1,0 +1,15 @@
+@model RaceDay.Mvc.Models.OrganiserResultsViewModel
+@{ ViewData["Title"] = "Record event results"; }
+<p><a asp-action="Events">← Back to events</a></p><p class="eyebrow">RACE RESULTS</p><h1>@Model.Event.Name</h1><p class="muted">Enter each enrolled participant's finish time, position, and result status.</p>
+@if (TempData["Error"] is string error) { <div class="alert alert-danger">@error</div> }
+@if (TempData["Success"] is string success) { <div class="alert alert-success">@success</div> }
+@if (Model.Enrolments.Count == 0) { <div class="empty-card">There are no enrolments to record results for.</div> }
+else { <div class="row g-3">@foreach (var row in Model.Enrolments) { <div class="col-12"><div class="form-card"><div class="d-flex justify-content-between"><h2 class="h5">@row.Enrolment.ParticipantName · @row.CategoryName</h2>@if (row.Result is not null) { <span class="status-chip status-confirmed">@row.Result.ResultStatus · Position @row.Result.Position</span> }</div>
+@if (row.Result is null) { <form asp-action="SaveResult" method="post" class="row g-2 align-items-end"><input type="hidden" name="EventId" value="@Model.Event.EventId" /><input type="hidden" name="EnrolmentId" value="@row.Enrolment.EnrolmentId" />
+<div class="col-md-3"><label class="form-label">Finish time (minutes)</label><input class="form-control" name="FinishTime" type="number" min="0" /></div>
+<div class="col-md-3"><label class="form-label">Finishing position</label><input class="form-control" name="Position" maxlength="20" placeholder="1st" /></div>
+<div class="col-md-3"><label class="form-label">Result status</label><select class="form-select" name="ResultStatus"><option>Completed</option><option>DNF</option><option>DNS</option><option>Disqualified</option></select></div>
+<div class="col-md-3"><button class="btn btn-primary">Record result</button></div></form> }
+else { <p class="mb-0 text-muted">Finish time: @(row.Result.FinishTime?.ToString() ?? "—") minutes</p> }
+</div></div> } }</div> }
+

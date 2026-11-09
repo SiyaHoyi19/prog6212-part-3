@@ -1,0 +1,8 @@
+@model IReadOnlyList<RaceDay.Mvc.Models.ParticipantEnrolmentRowViewModel>
+@{ ViewData["Title"] = "My events"; }
+<p class="eyebrow">PARTICIPANT</p><h1>My events</h1><p class="muted">Your event entries and their current enrolment status.</p>
+@if (ViewBag.Error is string error) { <div class="alert alert-danger">@error</div> }
+@if (Model.Count == 0) { <div class="empty-card">You have not entered any events yet. <a asp-action="Index">Browse upcoming events</a>.</div> }
+else { <div class="table-responsive"><table class="table align-middle bg-white"><thead><tr><th>Event</th><th>Date</th><th>Category</th><th>Status</th></tr></thead><tbody>
+@foreach (var row in Model) { var statusClass = row.Enrolment.Status.ToLowerInvariant() switch { "confirmed" => "status-confirmed", "cancelled" => "status-cancelled", _ => "status-pending" }; <tr><td>@(row.Event?.Name ?? "Event")</td><td>@(row.Event?.Date.ToString("dd MMM yyyy") ?? "—")</td><td>@row.CategoryName</td><td><span class="status-chip @statusClass">@row.Enrolment.Status</span></td></tr> }
+</tbody></table></div> }

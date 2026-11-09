@@ -1,0 +1,18 @@
+@model IReadOnlyList<RaceDay.Contracts.CategoryDto>
+@{ var ev = (RaceDay.Contracts.EventDto)ViewBag.Event; ViewData["Title"] = "Event categories"; }
+<p><a asp-action="Events">← Back to events</a></p>
+<div class="section-heading"><div><p class="eyebrow">EVENT CATEGORIES</p><h1>@ev.Name</h1><p class="muted">Add the race distances and age groups participants can select.</p></div></div>
+@if (ViewBag.Error is string error) { <div class="alert alert-danger">@error</div> }
+@if (ViewBag.Success is string success) { <div class="alert alert-success">@success</div> }
+<div class="row g-4">
+ <div class="col-lg-7"><div class="form-card"><h2 class="h4">Categories</h2>
+ @if (Model.Count == 0) { <p class="muted">No categories have been added.</p> }
+ else { <div class="table-responsive"><table class="table align-middle"><thead><tr><th>Name</th><th>Distance</th><th>Minimum age</th><th></th></tr></thead><tbody>
+ @foreach (var category in Model) { <tr><td>@category.Name</td><td>@category.Distance</td><td>@category.MinAge+</td><td><form asp-action="DeleteCategory" method="post"><input type="hidden" name="eventId" value="@ev.EventId" /><input type="hidden" name="id" value="@category.CategoryId" /><button class="btn btn-sm btn-outline-danger">Delete</button></form></td></tr> }
+ </tbody></table></div> }</div></div>
+ <div class="col-lg-5"><div class="form-card"><h2 class="h4">Add category</h2><form asp-action="SaveCategory" method="post"><input type="hidden" name="EventId" value="@ev.EventId" />
+  <label class="form-label" for="Name">Category name</label><input class="form-control" id="Name" name="Name" required maxlength="50" placeholder="Junior 5 km" />
+  <label class="form-label mt-3" for="Distance">Distance</label><input class="form-control" id="Distance" name="Distance" required maxlength="50" placeholder="5 km" />
+  <label class="form-label mt-3" for="MinAge">Minimum age</label><input class="form-control" id="MinAge" name="MinAge" type="number" min="0" max="120" value="0" required />
+  <button class="btn btn-primary mt-4">Add category</button></form></div></div>
+</div>
