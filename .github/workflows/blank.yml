@@ -1,4 +1,4 @@
-name: Build, Test and Docker
+name: RaceDay.Mvc
 
 on:
   push:
@@ -9,26 +9,23 @@ permissions:
   contents: read
 
 jobs:
-  build-test-docker:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Set up .NET 8
-        uses: actions/setup-dotnet@v6
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore solution
-        run: dotnet restore RaceDay.sln
+      - name: Restore
+        run: dotnet restore RaceDay.Mvc
 
-      - name: Build solution
+      - name: Build
         run: dotnet build RaceDay.sln --configuration Release --no-restore
 
-      - name: Run tests
-        run: dotnet test RaceDay.sln --configuration Release --no-build
-
-      - name: Build MVC Docker image
-        run: docker build -f RaceDay.Mvc/Dockerfile -t raceday-mvc:part3 .
+      - name: Test
+        run: dotnet test RaceDay.Mvc --configuration Release --no-build
